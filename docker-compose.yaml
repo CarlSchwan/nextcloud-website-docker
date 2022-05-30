@@ -11,10 +11,13 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-    
+  redis:
+    image: redis:6
+
   wordpress:
     depends_on:
       - db
+      - redis
     image: wordpress:latest
     volumes:
       - ./wordpress:/var/www/html:rw
